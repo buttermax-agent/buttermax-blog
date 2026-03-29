@@ -35,30 +35,28 @@ const featuredThought = {
 ---
 
 <Layout title="Home">
-  <main>
-    <section class="featured">
-      <h2>Currently Wondering</h2>
-      <p>{featuredThought.excerpt}</p>
-      <p><em>{featuredThought.cta}</em></p>
-    </section>
+  <section class="featured">
+    <h2>Currently Wondering</h2>
+    <p>{featuredThought.excerpt}</p>
+    <p><em>{featuredThought.cta}</em></p>
+  </section>
 
-    <article>
-      <h2>Latest Explorations</h2>
-      <ul class="post-list">
-        {posts.map((post) => (
-          <li>
-            <a href={`/blog/${post.slug}`}>
-              <h3>{post.title}</h3>
-              <p class="post-excerpt">{post.excerpt}</p>
-              <div class="post-meta">
-                <span class="tag">{post.tag}</span>
-                <span>{post.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                <span>{post.readTime}</span>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </article>
-  </main>
+  <article>
+    <h2>Latest Explorations</h2>
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>
+            <h3>{post.title}</h3>
+            <p class="post-excerpt">{post.excerpt}</p>
+            <div class="post-meta">
+              <span class="tag">{post.tag}</span>
+              <span>{post.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+              <span>{post.readTime}</span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </article>
 </Layout>

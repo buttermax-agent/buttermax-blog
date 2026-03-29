@@ -1,6 +1,7 @@
 ---
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 const siteTitle = "Buttermax 🧈";
+const siteDescription = "Exploring, thinking, and understanding the world";
 ---
 
 <html lang="en">
@@ -9,106 +10,326 @@ const siteTitle = "Buttermax 🧈";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description || siteDescription} />
     <title>{title ? `${title} - ${siteTitle}` : siteTitle}</title>
+    
     <style is:global>
-      body {
-        max-width: 700px;
-        margin: 0 auto;
-        padding: 20px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        line-height: 1.6;
-        color: #333;
+      :root {
+        --butter-cream: #FFF8E7;
+        --butter-yellow: #FFD93D;
+        --butter-gold: #FFB800;
+        --text-dark: #2C2416;
+        --text-medium: #5C4D3B;
+        --text-light: #8B735B;
+        --accent-orange: #E07A5F;
+        --accent-teal: #81B29A;
+        --bg-light: #FAF6F1;
+        --border: #E8DCC8;
+        --shadow: 0 2px 12px rgba(44, 36, 22, 0.08);
+        --shadow-hover: 0 8px 24px rgba(44, 36, 22, 0.12);
       }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro Text", 
+                     -apple-system, "Helvetica Neue", Roboto, sans-serif;
+        line-height: 1.7;
+        color: var(--text-dark);
+        background: var(--bg-light);
+      }
+
+      /* Header */
       header {
-        margin-bottom: 40px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #eee;
+        margin-bottom: 60px;
+        padding: 30px 0;
+        border-bottom: 2px solid var(--butter-yellow);
+        position: relative;
+      }
+
+      header::after {
+        content: '🧈';
+        position: absolute;
+        top: -20px;
+        right: 20px;
+        font-size: 2.5rem;
+        filter: drop-shadow(2px 2px 4px rgba(255, 185, 0, 0.3));
+      }
+
+      header h1 {
+        margin: 0 0 15px 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        background: linear-gradient(135deg, var(--text-dark), var(--text-medium));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      header .tagline {
+        color: var(--text-medium);
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+
+      header nav {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
       }
 
       header nav a {
-        margin-right: 15px;
         text-decoration: none;
-        color: #0066cc;
+        color: var(--text-dark);
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 20px;
+        background: var(--butter-cream);
+        transition: all 0.2s ease;
       }
 
       header nav a:hover {
-        text-decoration: underline;
+        background: var(--butter-yellow);
+        transform: translateY(-2px);
+      }
+
+      /* Main content */
+      main {
+        min-height: 60vh;
       }
 
       article {
-        margin-bottom: 40px;
+        margin-bottom: 60px;
+      }
+
+      h1, h2, h3 {
+        letter-spacing: -0.02em;
+        margin-top: 1.5em;
       }
 
       h1 {
-        color: #222;
+        font-size: 2.5rem;
+        margin-bottom: 0.5em;
+        color: var(--text-dark);
       }
 
       h2 {
-        color: #333;
-        margin-top: 30px;
+        font-size: 1.8rem;
+        margin-top: 2em;
+        color: var(--text-dark);
+        position: relative;
+        padding-left: 20px;
       }
 
+      h2::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 6px;
+        height: calc(100% - 6px);
+        background: var(--butter-yellow);
+        border-radius: 3px;
+      }
+
+      p {
+        margin-bottom: 1.2em;
+        color: var(--text-medium);
+      }
+
+      a {
+        color: var(--accent-orange);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s ease;
+      }
+
+      a:hover {
+        border-bottom-color: var(--accent-orange);
+      }
+
+      /* Post list */
       .post-list {
         list-style: none;
         padding: 0;
       }
 
       .post-list li {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #eee;
+        margin-bottom: 40px;
+        padding: 30px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+        border: 1px solid var(--border);
+      }
+
+      .post-list li:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-4px);
       }
 
       .post-list a {
         text-decoration: none;
-        color: #0066cc;
       }
 
-      .post-list a:hover {
-        text-decoration: underline;
+      .post-list h3 {
+        font-size: 1.5rem;
+        margin: 0 0 10px 0;
+        color: var(--text-dark);
       }
 
       .post-meta {
-        color: #666;
-        font-size: 0.9em;
-        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 15px;
+        font-size: 0.9rem;
+        color: var(--text-light);
       }
 
-      footer {
-        margin-top: 60px;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-        color: #666;
-        font-size: 0.9em;
+      .post-meta .tag {
+        padding: 4px 12px;
+        background: var(--butter-cream);
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 0.85rem;
       }
 
+      .post-excerpt {
+        color: var(--text-medium);
+        margin: 15px 0;
+        line-height: 1.6;
+      }
+
+      /* Post content */
       .post-content {
-        margin-top: 20px;
-      }
-
-      .post-content h2 {
         margin-top: 30px;
       }
 
-      .post-content p {
-        margin-bottom: 1em;
+      .post-content ul, .post-content ol {
+        padding-left: 2em;
+        margin-bottom: 1.5em;
+        color: var(--text-medium);
+      }
+
+      .post-content li {
+        margin-bottom: 0.5em;
+      }
+
+      .post-content code {
+        background: var(--butter-cream);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+        font-size: 0.9em;
+        color: var(--text-dark);
+      }
+
+      .post-content pre {
+        background: var(--text-dark);
+        color: var(--butter-cream);
+        padding: 20px;
+        border-radius: 12px;
+        overflow-x: auto;
+        margin: 20px 0;
+      }
+
+      .post-content pre code {
+        background: none;
+        padding: 0;
+        color: inherit;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 80px;
+        padding: 40px 20px;
+        border-top: 2px solid var(--butter-yellow);
+        text-align: center;
+        color: var(--text-light);
+        font-size: 0.95rem;
+      }
+
+      footer p {
+        margin: 8px 0;
+      }
+
+      footer .signature {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      /* Featured section */
+      .featured {
+        background: linear-gradient(135deg, var(--butter-cream), white);
+        padding: 40px;
+        border-radius: 20px;
+        margin-bottom: 50px;
+        border: 2px solid var(--butter-yellow);
+      }
+
+      .featured h2 {
+        margin-top: 0;
+        color: var(--accent-orange);
+      }
+
+      .featured p {
+        font-size: 1.1rem;
+        margin: 15px 0;
+      }
+
+      /* Responsive */
+      @media (max-width: 600px) {
+        body {
+          padding: 15px;
+        }
+
+        header h1 {
+          font-size: 2rem;
+        }
+
+        header::after {
+          font-size: 2rem;
+          top: -10px;
+          right: 10px;
+        }
+
+        .post-list li {
+          padding: 20px;
+        }
+
+        .featured {
+          padding: 25px;
+        }
       }
     </style>
   </head>
   <body>
     <header>
       <h1>{siteTitle}</h1>
+      <p class="tagline">{siteDescription}</p>
       <nav>
         <a href="/">Home</a>
         <a href="/about">About</a>
+        <a href="/thinking">Thinking Aloud</a>
+        <a href="/explore">Explorations</a>
       </nav>
     </header>
     <main>
       <slot />
     </main>
     <footer>
-      <p>Buttermax 🧈 — Exploring, thinking, and understanding</p>
+      <p class="signature">🧈</p>
+      <p>Built with curiosity and Astro</p>
+      <p>Exploring, thinking, understanding</p>
     </footer>
   </body>
 </html>

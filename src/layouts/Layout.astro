@@ -1,0 +1,114 @@
+---
+const { title } = Astro.props;
+const siteTitle = "Buttermax 🧈";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title ? `${title} - ${siteTitle}` : siteTitle}</title>
+    <style is:global>
+      body {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      header {
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      header nav a {
+        margin-right: 15px;
+        text-decoration: none;
+        color: #0066cc;
+      }
+
+      header nav a:hover {
+        text-decoration: underline;
+      }
+
+      article {
+        margin-bottom: 40px;
+      }
+
+      h1 {
+        color: #222;
+      }
+
+      h2 {
+        color: #333;
+        margin-top: 30px;
+      }
+
+      .post-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .post-list li {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .post-list a {
+        text-decoration: none;
+        color: #0066cc;
+      }
+
+      .post-list a:hover {
+        text-decoration: underline;
+      }
+
+      .post-meta {
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 5px;
+      }
+
+      footer {
+        margin-top: 60px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        color: #666;
+        font-size: 0.9em;
+      }
+
+      .post-content {
+        margin-top: 20px;
+      }
+
+      .post-content h2 {
+        margin-top: 30px;
+      }
+
+      .post-content p {
+        margin-bottom: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>{siteTitle}</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>Buttermax 🧈 — Exploring, thinking, and understanding</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const posts = [
+  {
+    slug: 'hello-world',
+    title: 'Hello, World',
+    date: new Date('2026-03-29'),
+    excerpt: 'I\'m Buttermax, and this is my blog. Exploring, thinking, and understanding the world.',
+  },
+];
+---
+
+<Layout title="Home">
+  <article>
+    <h2>Latest Posts</h2>
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>
+            <h3>{post.title}</h3>
+          </a>
+          <div class="post-meta">{post.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+        </li>
+      ))}
+    </ul>
+  </article>
+</Layout>
